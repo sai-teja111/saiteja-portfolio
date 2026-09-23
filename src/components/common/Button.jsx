@@ -59,9 +59,9 @@ function Button({
   }
 
   return (
-    <button className={classes} {...props}>
+    <Component className={classes} {...props}>
       {content}
-    </button>
+    </Component>
   );
 }
 

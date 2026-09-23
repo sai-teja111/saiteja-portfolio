@@ -1,9 +1,13 @@
+import smartServiceDispatchImg from "../assets/projects/smart-service-dispatch.png";
+import developerPortfolioImg from "../assets/projects/developer-portfolio.png";
+import todoManagerImg from "../assets/projects/todo-manager.png";
+
 export const projects = [
   {
     id: "project-1",
     title: "Smart Service Dispatch System",
     description:
-      "A full-stack service dispatch platform that intelligently matches customers with suitable technicians based on semantic service detection, skills, location, availability, workload, and ratings.",
+      "A Python-based service dispatch system that intelligently matches customers with suitable technicians using semantic service detection, skills, location, availability, workload, and ratings.",
     problem: "",
     technologies: [
       "Python",
@@ -22,7 +26,8 @@ export const projects = [
     ],
     github: "",
     liveDemo: "",
-    image: "",
+    image: smartServiceDispatchImg,
+    imagePosition: "top",
     status: "Currently Building",
   },
   {
@@ -50,25 +55,37 @@ export const projects = [
     ],
     github: "",
     liveDemo: "",
-    image: "",
+    image: developerPortfolioImg,
+    imagePosition: "top",
     status: "Completed",
   },
   {
     id: "project-3",
-    title: "Project Three",
+    title: "Todo Manager",
     description:
-      "[ADD PROJECT DESCRIPTION] — Briefly describe what this project does and why it was built.",
-    problem:
-      "[ADD PROBLEM STATEMENT] — What challenge or need does this project address?",
-    technologies: ["React", "JavaScript", "Tailwind CSS", "REST APIs"],
-    features: [
-      "[ADD FEATURE 1]",
-      "[ADD FEATURE 2]",
+      "A modern task management application built with React and Redux Toolkit to demonstrate scalable state management, reusable components, and efficient task management workflows.",
+    problem: "",
+    technologies: [
+      "React",
+      "JavaScript",
+      "Redux Toolkit",
+      "React Router",
+      "Tailwind CSS",
+      "Vite",
     ],
-    github: "[ADD GITHUB URL]",
+    features: [
+      "Todo creation, editing, completion, and deletion",
+      "Centralized state management with Redux Toolkit",
+      "Search, filtering, and sorting functionality",
+      "Task priorities, categories, and due dates",
+      "Persistent state with localStorage",
+      "Responsive and modern user interface",
+    ],
+    github: "",
     liveDemo: "",
-    image: "",
-    status: "Completed",
+    image: todoManagerImg,
+    imagePosition: "top",
+    status: "Currently Building",
   },
 ];
 

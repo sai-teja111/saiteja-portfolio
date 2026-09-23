@@ -1,10 +1,10 @@
 import { motion } from "motion/react";
+import { Link } from "react-router";
 import {
   Code2,
   ExternalLink,
   FolderOpen,
   Wrench,
-  CheckSquare,
 } from "lucide-react";
 
 import Container from "../common/Container";
@@ -91,7 +91,12 @@ function ProjectCard({ project, index }) {
         {project.image && !isPlaceholder(project.image) ? (
           <img
             src={project.image}
-            alt={`${project.title} preview`}
+            alt={project.title}
+            style={
+              project.imagePosition
+                ? { objectPosition: project.imagePosition }
+                : undefined
+            }
             className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
             loading="lazy"
           />
@@ -111,25 +116,6 @@ function ProjectCard({ project, index }) {
             />
           </div>
         )}
-
-        <div className="absolute left-4 top-4 z-10">
-          <span
-            className={`inline-flex items-center gap-1.5 rounded-full border backdrop-blur-md bg-background/40 px-2.5 py-1 text-xs font-medium ${statusColor}`}
-          >
-            <span
-              className={`relative h-1.5 w-1.5 rounded-full ${
-                project.status === "Currently Building"
-                  ? "bg-accent"
-                  : "bg-primary"
-              }`}
-            >
-              {project.status === "Currently Building" && (
-                <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-30" />
-              )}
-            </span>
-            {project.status}
-          </span>
-        </div>
 
         <motion.div
           variants={fadeUpSubtle}
@@ -162,7 +148,26 @@ function ProjectCard({ project, index }) {
       </div>
 
       <div className="relative z-10 flex min-w-0 flex-1 flex-col p-6">
-        <div className="flex items-start justify-between gap-4">
+        <motion.div variants={fadeUpSubtle}>
+          <span
+            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium ${statusColor}`}
+          >
+            <span
+              className={`relative h-1.5 w-1.5 rounded-full ${
+                project.status === "Currently Building"
+                  ? "bg-accent"
+                  : "bg-primary"
+              }`}
+            >
+              {project.status === "Currently Building" && (
+                <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-30" />
+              )}
+            </span>
+            {project.status}
+          </span>
+        </motion.div>
+
+        <div className="mt-4 flex items-start justify-between gap-4">
           <h3 className="min-w-0 wrap-break-word text-lg font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
             {project.title}
           </h3>
@@ -171,26 +176,6 @@ function ProjectCard({ project, index }) {
         <p className="mt-3 text-sm leading-6 text-muted-foreground">
           {project.description}
         </p>
-
-        {project.features && project.features.length > 0 && (
-          <div className="mt-5">
-            <div className="mb-2.5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              <CheckSquare size={12.5} className="text-primary" />
-              Features
-            </div>
-            <ul className="space-y-1.5">
-              {project.features.map((f) => (
-                <motion.li
-                  key={f}
-                  variants={fadeUpSubtle}
-                  className="text-sm text-muted-foreground before:mr-2 before:font-bold before:text-gradient-primary before:content-['›']"
-                >
-                  {f}
-                </motion.li>
-              ))}
-            </ul>
-          </div>
-        )}
 
         {project.technologies && project.technologies.length > 0 && (
           <div className="mt-5">
@@ -218,22 +203,29 @@ function ProjectCard({ project, index }) {
         )}
 
         <div className="mt-auto pt-6">
-          {!isPlaceholder(project.github) ? (
+          <div className="flex flex-wrap items-center gap-3">
             <Button
-              as="a"
-              href={project.github}
+              as={Link}
+              to={`/project/${project.id}`}
               variant="secondary"
               size="sm"
-              external
               withArrow
             >
-              View Source
+              View Project
             </Button>
-          ) : (
-            <span className="inline-block rounded-md text-sm text-muted-foreground/90">
-              {project.github}
-            </span>
-          )}
+            {!isPlaceholder(project.github) && (
+              <Button
+                as="a"
+                href={project.github}
+                variant="secondary"
+                size="sm"
+                external
+                withArrow
+              >
+                View Source
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </motion.article>

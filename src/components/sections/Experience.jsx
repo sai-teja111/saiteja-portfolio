@@ -95,7 +95,11 @@ function Experience() {
                     >
                       <div className="relative flex h-5 w-5 items-center justify-center">
                         <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-15" />
-                        <span className="h-3 w-3 rounded-full bg-gradient-primary ring-4 ring-background" />
+                        <span
+                          aria-hidden="true"
+                          className="timeline-dot-ping absolute inline-flex h-full w-full rounded-full bg-primary/40"
+                        />
+                        <span className="relative h-3 w-3 rounded-full bg-gradient-primary ring-4 ring-background" />
                       </div>
                     </motion.div>
                   </div>
